@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MissionPulse — Crew SOS</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header><strong>✦ MISSIONPULSE</strong><span>CREW SOS · DEMONSTRATION</span></header>
+  <main>
+    <p class="notice">Hackathon prototype. No approved medical procedures are installed. Not for real emergencies. No clinical advice is generated.</p>
+    <h1>Help starts with one tap.</h1>
+    <p>Report a problem, review available data, open the procedure panel, and track a support request.</p>
+    <button id="sos" class="sos">CREW SOS</button>
+
+    <section id="incident" hidden>
+      <article><h2>1 · Report</h2>
+        <label>Crew code <input id="crew" value="A01" maxlength="32" pattern="[A-Za-z0-9_-]+"></label>
+        <p>Select a reported problem:</p><div id="problems" class="choices"></div>
+        <p>Select symptoms reported by the crew member:</p><div id="symptoms" class="choices"></div>
+        <label>Reported onset <select id="onset"><option>Unknown</option><option>Just now</option><option>Within 10 minutes</option><option>10–60 minutes ago</option><option>More than 1 hour ago</option></select></label>
+        <label>Reported severity <select id="severity"><option>Unknown</option><option>Mild</option><option>Moderate</option><option>Severe</option></select></label>
+      </article>
+
+      <article><h2>2 · Available readings</h2><p>No sensor is connected. Missing readings are not normal readings.</p>
+        <div id="readings" class="grid"></div>
+        <button id="demoReadings" class="secondary">Load synthetic demo readings</button>
+        <button id="clearReadings" class="secondary">Clear readings</button>
+      </article>
+
+      <article><h2>3 · Procedure panel</h2><p class="notice">UNREVIEWED DEMONSTRATION · This panel demonstrates navigation only. It contains no treatment instructions.</p>
+        <p id="protocolMeta"></p><h3 id="stepTitle"></h3><p id="stepText"></p>
+        <div class="choices"><button id="back" class="secondary">Previous</button><button id="complete">Mark demo step complete</button><button id="skip" class="secondary">Mark unable / skipped</button></div>
+        <ol id="stepLog"></ol>
+      </article>
+
+      <article><h2>4 · Request support</h2>
+        <p>SMS, phone-call status, and human acknowledgment are tracked separately. This web app is not a spacecraft communications link.</p>
+        <label>Alert mode <select id="mode"><option value="demo">Simulation — no text or call</option><option value="backend">Configured backend</option></select></label>
+        <label>Backend URL <input id="backend" type="url" placeholder="https://your-backend.example"></label>
+        <label>Backend access token <input id="token" type="password" autocomplete="off" placeholder="Only needed for backend mode"></label>
+        <p class="note">The token stays in this page's memory and is not saved or exported. Never put Twilio secrets into this page.</p>
+        <button id="alert">Request help</button><button id="refresh" class="secondary">Refresh status</button>
+        <p id="alertStatus" role="status" aria-live="polite">No alert requested.</p>
+        <button id="demoAck" class="secondary">Simulate human acknowledgment</button>
+      </article>
+
+      <article><h2>Incident handoff</h2><pre id="summary"></pre><button id="export">Download incident JSON</button><button id="new" class="secondary">New incident</button></article>
+    </section>
+
+    <article><h2>Daily report and crew questions</h2>
+      <p>The daily panel summarizes this browser's incident records. It does not assess health or establish that anyone is safe.</p>
+      <button id="daily" class="secondary">Show today's incident report</button><p id="dailyReport"></p>
+      <label>Choose a question <select id="question"><option value="status">Has mission support acknowledged?</option><option value="readings">Are these real sensor readings?</option><option value="procedure">Where is the medical procedure?</option><option value="diagnosis">Can this tell me the diagnosis?</option></select></label>
+      <button id="ask" class="secondary">Show answer</button><p id="answer" role="status"></p>
+    </article>
+    <p id="message" role="status"></p>
+  </main>
+  <script src="protocols.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

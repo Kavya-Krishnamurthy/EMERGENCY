@@ -1,0 +1,29 @@
+:root {
+  --background: #eff3f5;
+  --text: #192e3b;
+  --accent: #146b73;
+  --danger: #a72135;
+  --radius: 18px;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--background); color: var(--text); font: 16px/1.6 system-ui, sans-serif; }
+header { display: flex; justify-content: space-between; gap: 12px; padding: 24px 6%; background: white; font-size: 13px; }
+main { max-width: 950px; margin: auto; padding: 25px; }
+h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.15; }
+article { background: white; padding: 24px; margin: 24px 0; border-radius: var(--radius); }
+.notice { padding: 16px; background: #fff0d4; border-left: 4px solid #a56b00; border-radius: 6px; }
+button { padding: 13px 18px; border: 0; border-radius: 10px; background: var(--accent); color: white; font: 600 15px system-ui; cursor: pointer; }
+button:disabled { opacity: .5; cursor: default; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #e2ab36; outline-offset: 3px; }
+.sos { background: var(--danger); font-size: 23px; min-height: 90px; width: 100%; }
+.secondary { background: #e6edf0; color: var(--text); }
+.choices { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+.choices button[aria-pressed="true"] { outline: 3px solid #192e3b; background: #146b73; color: white; }
+label { display: block; margin: 14px 0; }
+input, select { display: block; width: 100%; padding: 12px; font: inherit; border: 1px solid #aebfc9; border-radius: 8px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 18px; }
+.reading { padding: 16px; background: #f0f5f7; border-radius: 12px; }
+.reading strong { display: block; font-size: 24px; }
+.note, small { color: #526572; font-size: 13px; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; }
+[hidden] { display: none !important; }
